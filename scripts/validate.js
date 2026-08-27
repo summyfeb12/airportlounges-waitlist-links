@@ -65,12 +65,36 @@ function validate() {
       }
     }
 
-    // URL format check
-    try {
-      new URL(lounge.waitlist_url);
-    } catch {
-      console.error(`❌ ${prefix}: Invalid waitlist_url '${lounge.waitlist_url}'`);
-      hasErrors = true;
+    // Access method & URL format check
+    const accessMethod = lounge.access_method || 'web';
+    if (accessMethod === 'app') {
+      if (!lounge.notes || lounge.notes.trim().length === 0) {
+        console.error(
+          `❌ ${prefix}: Lounges with access_method 'app' must include queue instructions in 'notes' (e.g. navigation path in app).`
+        );
+        hasErrors = true;
+      }
+      if (lounge.waitlist_url) {
+        try {
+          new URL(lounge.waitlist_url);
+        } catch {
+          console.error(`❌ ${prefix}: Invalid waitlist_url '${lounge.waitlist_url}'`);
+          hasErrors = true;
+        }
+      }
+    } else {
+      // web access method requires a valid waitlist_url
+      if (!lounge.waitlist_url) {
+        console.error(`❌ ${prefix}: 'waitlist_url' is required for access_method 'web'.`);
+        hasErrors = true;
+      } else {
+        try {
+          new URL(lounge.waitlist_url);
+        } catch {
+          console.error(`❌ ${prefix}: Invalid waitlist_url '${lounge.waitlist_url}'`);
+          hasErrors = true;
+        }
+      }
     }
   });
 

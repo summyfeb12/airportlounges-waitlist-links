@@ -62,10 +62,15 @@ Entries in [`data/lounges.json`](data/lounges.json) must include the following a
 | `terminal` | `string` | **Yes** | Terminal, concourse, or gate location | `"Terminal 4, Concourse B, near Gate B32"` |
 | `lounge_name` | `string` | **Yes** | Full lounge title | `"Delta Sky Club"` |
 | `network` | `string` | **Yes** | One of the supported networks (see below) | `"Delta Sky Club"` |
-| `waitlist_url` | `string` | **Yes** | Working HTTPS link to join queue or check in | `"https://..."` |
-| `qr_code_only` | `boolean` | No | `true` if physical scan/geofencing is required | `false` |
-| `notes` | `string` | No | Timing restrictions, entry rules, access details | `"Waitlist queue activates during peak hours."` |
-| `last_verified` | `string` | **Yes** | Date link was tested (`YYYY-MM-DD`) | `"2026-08-14"` |
+| `access_method` | `string` | No | `"web"` (default, for all public URLs & QR placard links) or `"app"` (native mobile app only) | `"web"` |
+| `waitlist_url` | `string` | Conditional | Working HTTPS queue or booking link. Required when `access_method` is `"web"`; optional when `"app"`. | `"https://..."` |
+| `link_type` | `string` | No | `"queue"` (default, real-time waitlist) or `"reservation"` (advance booking form) | `"queue"` |
+| `notes` | `string` | Conditional | Timing restrictions, entry rules, or in-app path instructions (required if `access_method` is `"app"`). | `"Join waitlist via Fly Delta App > Airport Lounge Access."` |
+| `last_verified` | `string` | **Yes** | Date link was tested (`YYYY-MM-DD`) | `"2026-08-27"` |
+
+### 💡 Access Methods & QR Codes:
+- **`web` (Default)**: Any queue with a public HTTPS URL (e.g. Waitwhile, WaitWell, online reservation). If a lounge posts a QR code on a door placard that opens a web queue link in your phone's browser, extract the URL and submit it as `access_method: "web"`.
+- **`app`**: Cardmember/airline queues that exist strictly inside a closed mobile application (e.g. Amex Centurion in the Amex App, Delta Sky Club in the Fly Delta App). For these, set `access_method: "app"`, leave `waitlist_url` optional, and describe the exact in-app tap steps in `notes`.
 
 ### Supported `network` values:
 - `American Express Centurion`

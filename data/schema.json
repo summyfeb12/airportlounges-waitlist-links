@@ -13,7 +13,6 @@
       "terminal",
       "lounge_name",
       "network",
-      "waitlist_url",
       "last_verified"
     ],
     "properties": {
@@ -66,6 +65,15 @@
           "Independent"
         ]
       },
+      "access_method": {
+        "type": "string",
+        "enum": [
+          "web",
+          "app"
+        ],
+        "default": "web",
+        "description": "web = public web URL (waitlist or reservation link); app = native mobile app queue only (e.g. Amex app, Fly Delta app)"
+      },
       "waitlist_url": {
         "type": "string",
         "format": "uri",
@@ -79,10 +87,6 @@
         ],
         "default": "queue",
         "description": "queue = real-time waitlist joined on the spot; reservation = advance booking for a chosen date and time"
-      },
-      "qr_code_only": {
-        "type": "boolean",
-        "default": false
       },
       "notes": {
         "type": "string"

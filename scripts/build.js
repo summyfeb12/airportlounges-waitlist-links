@@ -5,11 +5,20 @@ const PDFDocument = require('pdfkit');
 const dataPath = path.join(__dirname, '..', 'data', 'lounges.json');
 const readmePath = path.join(__dirname, '..', 'README.md');
 
-// Action-link label. Reservation entries link to an advance booking form, not a
-// live queue, so they must not be labelled as one. The queue wording is passed
-// in because each surface already uses its own.
+// Action-link label and display helpers
 function actionLabel(l, queueLabel) {
+  if (l.access_method === 'app') return 'In-App Queue';
   return l.link_type === 'reservation' ? 'Reserve' : queueLabel;
+}
+
+function renderLinkDisplay(l, queueLabel) {
+  if (l.access_method === 'app') {
+    if (l.waitlist_url) {
+      return `<a href="${l.waitlist_url}" target="_blank" rel="noopener noreferrer"><b>📱 In-App Info</b> ↗</a>`;
+    }
+    return `<span>📱 In-App Only</span>`;
+  }
+  return `<a href="${l.waitlist_url}" target="_blank" rel="noopener noreferrer"><b>${actionLabel(l, queueLabel)}</b> ↗</a>`;
 }
 
 const distDir = path.join(__dirname, '..', 'dist');
@@ -54,8 +63,7 @@ function generateMarkdownTable(lounges) {
 
   let currentAirport = '';
   lounges.forEach((l) => {
-    const qrBadge = l.qr_code_only ? ' `[QR Only]`' : '';
-    const linkDisplay = `<a href="${l.waitlist_url}" target="_blank" rel="noopener noreferrer"><b>${actionLabel(l, 'Join Waitlist')}</b> ↗</a>`;
+    const linkDisplay = renderLinkDisplay(l, 'Join Waitlist');
     const notesDisplay = l.notes ? l.notes.replace(/\|/g, '\\|') : '-';
     const verifiedDisplay = `\`${l.last_verified}\``;
 
@@ -66,7 +74,7 @@ function generateMarkdownTable(lounges) {
       currentAirport = l.airport_code;
     }
 
-    md += `| ${airportDisplay} | ${l.terminal.replace(/\|/g, '\\|')} | **${l.lounge_name.replace(/\|/g, '\\|')}**${qrBadge} | \`${l.network}\` | ${linkDisplay} | ${notesDisplay} | ${verifiedDisplay} |\n`;
+    md += `| ${airportDisplay} | ${l.terminal.replace(/\|/g, '\\|')} | **${l.lounge_name.replace(/\|/g, '\\|')}** | \`${l.network}\` | ${linkDisplay} | ${notesDisplay} | ${verifiedDisplay} |\n`;
   });
 
   md += `\n---\n\n`;
@@ -81,7 +89,7 @@ function generateMarkdownTable(lounges) {
     md += `| Airport | Terminal | Lounge | Waitlist Link | Notes |\n`;
     md += `| :--- | :--- | :--- | :--- | :--- |\n`;
     netLounges.forEach((l) => {
-      const netLinkDisplay = `<a href="${l.waitlist_url}" target="_blank" rel="noopener noreferrer">${actionLabel(l, 'Join Waitlist')} ↗</a>`;
+      const netLinkDisplay = renderLinkDisplay(l, 'Join Waitlist');
       md += `| **${l.airport_code}** | ${l.terminal.replace(/\|/g, '\\|')} | ${l.lounge_name.replace(/\|/g, '\\|')} | ${netLinkDisplay} | ${l.notes || '-'} |\n`;
     });
     md += `\n</details>\n\n`;
@@ -426,6 +434,11 @@ function generateWebSearchApp(lounges) {
       <select id="networkSelect" class="input-field">
         <option value="">All Networks</option>
       </select>
+      <select id="accessSelect" class="input-field">
+        <option value="">All Access Types</option>
+        <option value="web">Web Waitlist / Links</option>
+        <option value="app">Mobile App Only</option>
+      </select>
       <select id="sortSelect" class="input-field">
         <option value="airport_asc">Airport Code (A-Z)</option>
         <option value="airport_desc">Airport Code (Z-A)</option>
@@ -446,6 +459,7 @@ function generateWebSearchApp(lounges) {
     const grid = document.getElementById('loungesGrid');
     const searchInput = document.getElementById('searchInput');
     const networkSelect = document.getElementById('networkSelect');
+    const accessSelect = document.getElementById('accessSelect');
     const sortSelect = document.getElementById('sortSelect');
     const resultsCount = document.getElementById('resultsCount');
 
@@ -461,6 +475,7 @@ function generateWebSearchApp(lounges) {
     function render() {
       const q = searchInput.value.toLowerCase().trim();
       const selectedNet = networkSelect.value;
+      const selectedAccess = accessSelect.value;
       const sortBy = sortSelect.value;
 
       let filtered = lounges.filter(l => {
@@ -472,7 +487,8 @@ function generateWebSearchApp(lounges) {
           l.terminal.toLowerCase().includes(q) ||
           (l.notes && l.notes.toLowerCase().includes(q));
         const matchesNet = !selectedNet || l.network === selectedNet;
-        return matchesQuery && matchesNet;
+        const matchesAccess = !selectedAccess || (l.access_method || 'web') === selectedAccess;
+        return matchesQuery && matchesNet && matchesAccess;
       });
 
       // Sort
@@ -493,7 +509,21 @@ function generateWebSearchApp(lounges) {
         return;
       }
 
-      grid.innerHTML = filtered.map(l => \`
+      grid.innerHTML = filtered.map(l => {
+        const isApp = l.access_method === 'app';
+        let actionBtn = '';
+        if (isApp) {
+          if (l.waitlist_url) {
+            actionBtn = \`<a href="\${l.waitlist_url}" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 0.85rem; border-radius: 8px;">📱 In-App Info ↗</a>\`;
+          } else {
+            actionBtn = \`<span class="network-badge" style="background: rgba(129, 140, 248, 0.2); color: #c7d2fe; font-size: 0.85rem; padding: 0.5rem 0.85rem;">📱 In-App Only</span>\`;
+          }
+        } else {
+          const btnLabel = l.link_type === 'reservation' ? 'Reserve' : 'Join Queue';
+          actionBtn = \`<a href="\${l.waitlist_url}" target="_blank" rel="noopener noreferrer" class="link-btn">\${btnLabel} ↗</a>\`;
+        }
+
+        return \`
         <div class="card">
           <div>
             <div class="card-header">
@@ -509,14 +539,16 @@ function generateWebSearchApp(lounges) {
           </div>
           <div class="card-footer">
             <span class="verified-text">Verified: \${l.last_verified}</span>
-            <a href="\${l.waitlist_url}" target="_blank" rel="noopener noreferrer" class="link-btn">\${l.link_type === 'reservation' ? 'Reserve' : 'Join Queue'} ↗</a>
+            \${actionBtn}
           </div>
         </div>
-      \`).join('');
+      \`;
+      }).join('');
     }
 
     searchInput.addEventListener('input', render);
     networkSelect.addEventListener('change', render);
+    accessSelect.addEventListener('change', render);
     sortSelect.addEventListener('change', render);
     render();
   </script>
@@ -625,13 +657,27 @@ function generatePDF(lounges) {
       doc.fillColor('#475569').font('Helvetica').fontSize(7.5);
       doc.text(l.terminal, cols.terminal.x, currentY + 1, { width: cols.terminal.w - 10, height: 18, ellipsis: true });
 
-      // Short Clean Hyperlink Button
-      doc.rect(cols.link.x - 2, currentY - 1, 72, 14).fillAndStroke('#e0f2fe', '#0284c7');
-      doc.fillColor('#0369a1').font('Helvetica-Bold').fontSize(7.5);
-      doc.text(actionLabel(l, 'Join Queue') + ' ↗', cols.link.x + 6, currentY + 2, {
-        link: l.waitlist_url,
-        underline: false,
-      });
+      // Action / Link column
+      if (l.access_method === 'app') {
+        if (l.waitlist_url) {
+          doc.rect(cols.link.x - 2, currentY - 1, 72, 14).fillAndStroke('#e0e7ff', '#6366f1');
+          doc.fillColor('#4338ca').font('Helvetica-Bold').fontSize(7);
+          doc.text('In-App ↗', cols.link.x + 6, currentY + 2, {
+            link: l.waitlist_url,
+            underline: false,
+          });
+        } else {
+          doc.fillColor('#64748b').font('Helvetica-Oblique').fontSize(7.5);
+          doc.text('In-App Only', cols.link.x, currentY + 2);
+        }
+      } else {
+        doc.rect(cols.link.x - 2, currentY - 1, 72, 14).fillAndStroke('#e0f2fe', '#0284c7');
+        doc.fillColor('#0369a1').font('Helvetica-Bold').fontSize(7.5);
+        doc.text(actionLabel(l, 'Join Queue') + ' ↗', cols.link.x + 6, currentY + 2, {
+          link: l.waitlist_url,
+          underline: false,
+        });
+      }
 
       // Verified date
       doc.fillColor('#94a3b8').font('Helvetica').fontSize(7);
