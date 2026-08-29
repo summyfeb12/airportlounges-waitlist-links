@@ -5,31 +5,35 @@ const PDFDocument = require('pdfkit');
 const dataPath = path.join(__dirname, '..', 'data', 'lounges.json');
 const readmePath = path.join(__dirname, '..', 'README.md');
 
-// Action-link label and display helpers
-function actionLabel(l, queueLabel) {
-  if (l.access_method === 'app') return 'In-App Queue';
-  // Which field is present is the type: a free queue, or a paid booking.
-  return l.booking_url && !l.waitlist_url ? 'Reserve' : queueLabel;
+// Booking cost label helper: explicitly notes if there may be a charge/cost or if free
+function formatBookingCell(l) {
+  if (!l.booking_url) return '—';
+  
+  let costLabel = '';
+  if (l.booking_cost === 'free') {
+    costLabel = '<br><sub>(Free)</sub>';
+  } else if (l.booking_cost === 'credit') {
+    costLabel = '<br><sub>(Uses membership credit)</sub>';
+  } else if (l.booking_cost === 'cash') {
+    costLabel = '<br><sub>(Fee / Paid booking)</sub>';
+  } else {
+    costLabel = '<br><sub>(May have fees)</sub>';
+  }
+
+  return `<a href="${l.booking_url}" target="_blank" rel="noopener noreferrer"><b>Reserve</b> ↗</a>${costLabel}`;
 }
 
-// Booking costs money or a membership credit, so say which rather than
-// letting a Reserve link look like a free queue.
-const COST_NOTE = { cash: 'paid booking', credit: 'uses a lounge credit', free: 'free to book' };
-function actionUrl(l) {
-  return l.waitlist_url || l.booking_url || '';
-}
-
-function renderLinkDisplay(l, queueLabel) {
+function formatWaitlistCell(l) {
   if (l.access_method === 'app') {
     if (l.waitlist_url) {
       return `<a href="${l.waitlist_url}" target="_blank" rel="noopener noreferrer"><b>📱 In-App Info</b> ↗</a>`;
     }
     return `<span>📱 In-App Only</span>`;
   }
-  const url = actionUrl(l);
-  if (!url) return `<span>—</span>`;
-  const cost = (!l.waitlist_url && l.booking_cost) ? ` <sub>${COST_NOTE[l.booking_cost] || ''}</sub>` : '';
-  return `<a href="${url}" target="_blank" rel="noopener noreferrer"><b>${actionLabel(l, queueLabel)}</b> ↗</a>${cost}`;
+  if (l.waitlist_url) {
+    return `<a href="${l.waitlist_url}" target="_blank" rel="noopener noreferrer"><b>Join Waitlist</b> ↗</a>`;
+  }
+  return '—';
 }
 
 const distDir = path.join(__dirname, '..', 'dist');
@@ -69,12 +73,13 @@ function generateMarkdownTable(lounges) {
 
   // 2. Main Lounges Table (Grouped by Airport)
   md += `### 🛫 Lounges Directory (Sorted by Airport)\n\n`;
-  md += `| Airport | Terminal / Location | Lounge Name | Network | Waitlist / Check-in Link | Notes | Verified |\n`;
-  md += `| :--- | :--- | :--- | :--- | :--- | :--- | :---: |\n`;
+  md += `| Airport | Terminal / Location | Lounge Name | Network | Digital Waitlist (Live Queue) | Advance Booking / Reservation | Notes | Verified |\n`;
+  md += `| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :---: |\n`;
 
   let currentAirport = '';
   lounges.forEach((l) => {
-    const linkDisplay = renderLinkDisplay(l, 'Join Waitlist');
+    const waitlistDisplay = formatWaitlistCell(l);
+    const bookingDisplay = formatBookingCell(l);
     const notesDisplay = l.notes ? l.notes.replace(/\|/g, '\\|') : '-';
     const verifiedDisplay = `\`${l.last_verified}\``;
 
@@ -85,7 +90,7 @@ function generateMarkdownTable(lounges) {
       currentAirport = l.airport_code;
     }
 
-    md += `| ${airportDisplay} | ${l.terminal.replace(/\|/g, '\\|')} | **${l.lounge_name.replace(/\|/g, '\\|')}** | \`${l.network}\` | ${linkDisplay} | ${notesDisplay} | ${verifiedDisplay} |\n`;
+    md += `| ${airportDisplay} | ${l.terminal.replace(/\|/g, '\\|')} | **${l.lounge_name.replace(/\|/g, '\\|')}** | \`${l.network}\` | ${waitlistDisplay} | ${bookingDisplay} | ${notesDisplay} | ${verifiedDisplay} |\n`;
   });
 
   md += `\n---\n\n`;
@@ -97,11 +102,12 @@ function generateMarkdownTable(lounges) {
     const netLounges = lounges.filter((l) => l.network === net);
     md += `<details id="${netSlug}">\n`;
     md += `<summary><b>${net} (${netLounges.length})</b></summary>\n\n`;
-    md += `| Airport | Terminal | Lounge | Waitlist Link | Notes |\n`;
-    md += `| :--- | :--- | :--- | :--- | :--- |\n`;
+    md += `| Airport | Terminal | Lounge | Waitlist (Live Queue) | Advance Booking | Notes |\n`;
+    md += `| :--- | :--- | :--- | :--- | :--- | :--- |\n`;
     netLounges.forEach((l) => {
-      const netLinkDisplay = renderLinkDisplay(l, 'Join Waitlist');
-      md += `| **${l.airport_code}** | ${l.terminal.replace(/\|/g, '\\|')} | ${l.lounge_name.replace(/\|/g, '\\|')} | ${netLinkDisplay} | ${l.notes || '-'} |\n`;
+      const waitlistDisplay = formatWaitlistCell(l);
+      const bookingDisplay = formatBookingCell(l);
+      md += `| **${l.airport_code}** | ${l.terminal.replace(/\|/g, '\\|')} | ${l.lounge_name.replace(/\|/g, '\\|')} | ${waitlistDisplay} | ${bookingDisplay} | ${l.notes || '-'} |\n`;
     });
     md += `\n</details>\n\n`;
   });
@@ -522,16 +528,30 @@ function generateWebSearchApp(lounges) {
 
       grid.innerHTML = filtered.map(l => {
         const isApp = l.access_method === 'app';
-        let actionBtn = '';
+        let actionButtons = [];
+        
         if (isApp) {
           if (l.waitlist_url) {
-            actionBtn = \`<a href="\${l.waitlist_url}" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size: 0.85rem; padding: 0.5rem 0.85rem; border-radius: 8px;">📱 In-App Info ↗</a>\`;
+            actionButtons.push(\`<a href="\${l.waitlist_url}" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.75rem; border-radius: 8px;">📱 In-App Info ↗</a>\`);
           } else {
-            actionBtn = \`<span class="network-badge" style="background: rgba(129, 140, 248, 0.2); color: #c7d2fe; font-size: 0.85rem; padding: 0.5rem 0.85rem;">📱 In-App Only</span>\`;
+            actionButtons.push(\`<span class="network-badge" style="background: rgba(129, 140, 248, 0.2); color: #c7d2fe; font-size: 0.8rem; padding: 0.4rem 0.75rem;">📱 In-App Only</span>\`);
           }
-        } else {
-          const btnLabel = l.link_type === 'reservation' ? 'Reserve' : 'Join Queue';
-          actionBtn = \`<a href="\${l.waitlist_url || l.booking_url}" target="_blank" rel="noopener noreferrer" class="link-btn">\${btnLabel} ↗</a>\`;
+        } else if (l.waitlist_url) {
+          actionButtons.push(\`<a href="\${l.waitlist_url}" target="_blank" rel="noopener noreferrer" class="link-btn" style="font-size: 0.8rem; padding: 0.4rem 0.75rem;">Join Waitlist ↗</a>\`);
+        }
+
+        if (l.booking_url) {
+          let costBadge = '';
+          if (l.booking_cost === 'free') {
+            costBadge = '<span style="font-size: 0.7rem; color: #10b981; margin-left: 0.3rem;">(Free)</span>';
+          } else if (l.booking_cost === 'credit') {
+            costBadge = '<span style="font-size: 0.7rem; color: #cbd5e1; margin-left: 0.3rem;">(Credit)</span>';
+          } else if (l.booking_cost === 'cash') {
+            costBadge = '<span style="font-size: 0.7rem; color: #fbbf24; margin-left: 0.3rem;">(Fee/Paid)</span>';
+          } else {
+            costBadge = '<span style="font-size: 0.7rem; color: #fbbf24; margin-left: 0.3rem;">(Fee)</span>';
+          }
+          actionButtons.push(\`<a href="\${l.booking_url}" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.75rem; border-radius: 8px; border-color: rgba(56, 189, 248, 0.3);">Reserve ↗ \${costBadge}</a>\`);
         }
 
         return \`
@@ -548,9 +568,11 @@ function generateWebSearchApp(lounges) {
             <div class="terminal-info">📍 \${l.terminal}</div>
             <div class="notes-box">\${l.notes || 'No specific queue restrictions noted.'}</div>
           </div>
-          <div class="card-footer">
+          <div class="card-footer" style="gap: 0.5rem; flex-wrap: wrap;">
             <span class="verified-text">Verified: \${l.last_verified}</span>
-            \${actionBtn}
+            <div style="display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap;">
+              \${actionButtons.join('')}
+            </div>
           </div>
         </div>
       \`;
@@ -587,12 +609,13 @@ function generatePDF(lounges) {
 
     // Table Column X Coordinates & Widths
     const cols = {
-      airport: { x: margin + 8, w: 70 },
-      lounge: { x: margin + 82, w: 175 },
-      network: { x: margin + 262, w: 140 },
-      terminal: { x: margin + 406, w: 170 },
-      link: { x: margin + 580, w: 85 },
-      verified: { x: margin + 670, w: 85 },
+      airport: { x: margin + 6, w: 65 },
+      lounge: { x: margin + 74, w: 160 },
+      network: { x: margin + 238, w: 120 },
+      terminal: { x: margin + 362, w: 150 },
+      waitlist: { x: margin + 516, w: 85 },
+      booking: { x: margin + 605, w: 90 },
+      verified: { x: margin + 698, w: 65 },
     };
 
     // Set clean PDF document metadata
@@ -605,12 +628,13 @@ function generatePDF(lounges) {
 
     function drawHeader(y) {
       doc.rect(margin, y - 5, contentWidth, 20).fill('#0f172a');
-      doc.fillColor('#ffffff').font('Helvetica-Bold').fontSize(8.5);
+      doc.fillColor('#ffffff').font('Helvetica-Bold').fontSize(8);
       doc.text('AIRPORT', cols.airport.x, y);
       doc.text('LOUNGE NAME', cols.lounge.x, y);
       doc.text('NETWORK', cols.network.x, y);
       doc.text('TERMINAL / LOCATION', cols.terminal.x, y);
-      doc.text('WAITLIST', cols.link.x, y);
+      doc.text('WAITLIST', cols.waitlist.x, y);
+      doc.text('BOOKING (COST)', cols.booking.x, y);
       doc.text('VERIFIED', cols.verified.x, y);
     }
 
@@ -651,43 +675,64 @@ function generatePDF(lounges) {
       doc.rect(margin, currentY + rowHeight - 4, contentWidth, 0.5).fill('#e2e8f0');
 
       // Airport & City
-      doc.fillColor('#0284c7').font('Helvetica-Bold').fontSize(9);
+      doc.fillColor('#0284c7').font('Helvetica-Bold').fontSize(8.5);
       doc.text(l.airport_code, cols.airport.x, currentY);
-      doc.fillColor('#64748b').font('Helvetica').fontSize(7);
-      doc.text(l.city, cols.airport.x + 28, currentY + 1, { width: 42, ellipsis: true });
+      doc.fillColor('#64748b').font('Helvetica').fontSize(6.5);
+      doc.text(l.city, cols.airport.x + 24, currentY + 1, { width: 38, ellipsis: true });
 
       // Lounge Name
       doc.fillColor('#0f172a').font('Helvetica-Bold').fontSize(8);
       doc.text(l.lounge_name, cols.lounge.x, currentY + 1, { width: cols.lounge.w - 10, height: 18, ellipsis: true });
 
       // Network
-      doc.fillColor('#334155').font('Helvetica').fontSize(7.5);
+      doc.fillColor('#334155').font('Helvetica').fontSize(7);
       doc.text(l.network, cols.network.x, currentY + 1, { width: cols.network.w - 10, height: 18, ellipsis: true });
 
       // Terminal
-      doc.fillColor('#475569').font('Helvetica').fontSize(7.5);
+      doc.fillColor('#475569').font('Helvetica').fontSize(7);
       doc.text(l.terminal, cols.terminal.x, currentY + 1, { width: cols.terminal.w - 10, height: 18, ellipsis: true });
 
-      // Action / Link column
+      // Waitlist Column
       if (l.access_method === 'app') {
         if (l.waitlist_url) {
-          doc.rect(cols.link.x - 2, currentY - 1, 72, 14).fillAndStroke('#e0e7ff', '#6366f1');
-          doc.fillColor('#4338ca').font('Helvetica-Bold').fontSize(7);
-          doc.text('In-App ↗', cols.link.x + 6, currentY + 2, {
+          doc.rect(cols.waitlist.x - 2, currentY - 1, 68, 14).fillAndStroke('#e0e7ff', '#6366f1');
+          doc.fillColor('#4338ca').font('Helvetica-Bold').fontSize(6.5);
+          doc.text('In-App ↗', cols.waitlist.x + 4, currentY + 2, {
             link: l.waitlist_url,
             underline: false,
           });
         } else {
-          doc.fillColor('#64748b').font('Helvetica-Oblique').fontSize(7.5);
-          doc.text('In-App Only', cols.link.x, currentY + 2);
+          doc.fillColor('#64748b').font('Helvetica-Oblique').fontSize(7);
+          doc.text('In-App Only', cols.waitlist.x, currentY + 2);
         }
-      } else {
-        doc.rect(cols.link.x - 2, currentY - 1, 72, 14).fillAndStroke('#e0f2fe', '#0284c7');
-        doc.fillColor('#0369a1').font('Helvetica-Bold').fontSize(7.5);
-        doc.text(actionLabel(l, 'Join Queue') + ' ↗', cols.link.x + 6, currentY + 2, {
+      } else if (l.waitlist_url) {
+        doc.rect(cols.waitlist.x - 2, currentY - 1, 68, 14).fillAndStroke('#e0f2fe', '#0284c7');
+        doc.fillColor('#0369a1').font('Helvetica-Bold').fontSize(7);
+        doc.text('Waitlist ↗', cols.waitlist.x + 4, currentY + 2, {
           link: l.waitlist_url,
           underline: false,
         });
+      } else {
+        doc.fillColor('#94a3b8').font('Helvetica').fontSize(7);
+        doc.text('—', cols.waitlist.x + 4, currentY + 2);
+      }
+
+      // Advance Booking Column
+      if (l.booking_url) {
+        let costText = l.booking_cost === 'free' ? '(Free)' : (l.booking_cost === 'credit' ? '(Credit)' : '(Fee)');
+        let badgeBg = l.booking_cost === 'free' ? '#dcfce7' : '#fef3c7';
+        let badgeBorder = l.booking_cost === 'free' ? '#10b981' : '#f59e0b';
+        let badgeText = l.booking_cost === 'free' ? '#047857' : '#b45309';
+
+        doc.rect(cols.booking.x - 2, currentY - 1, 75, 14).fillAndStroke(badgeBg, badgeBorder);
+        doc.fillColor(badgeText).font('Helvetica-Bold').fontSize(6.5);
+        doc.text(`Reserve ${costText} ↗`, cols.booking.x + 2, currentY + 2, {
+          link: l.booking_url,
+          underline: false,
+        });
+      } else {
+        doc.fillColor('#94a3b8').font('Helvetica').fontSize(7);
+        doc.text('—', cols.booking.x + 4, currentY + 2);
       }
 
       // Verified date
