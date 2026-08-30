@@ -1,6 +1,6 @@
 # ✈️ Airport Lounges Waitlist Links
 
-[![Lounges Count](https://img.shields.io/badge/Lounges_Tracked-35-blue.svg?style=for-the-badge&logo=aer-lingus)](data/lounges.json)
+[![Lounges Count](https://img.shields.io/badge/Lounges_Tracked-37-blue.svg?style=for-the-badge&logo=aer-lingus)](data/lounges.json)
 [![Download PDF](https://img.shields.io/badge/Download-PDF_Directory-red.svg?style=for-the-badge&logo=adobe-acrobat-reader)](assets/lounges.pdf)
 [![Live Interactive Search](https://img.shields.io/badge/Search_%26_Filter-Live_Web_App-brightgreen.svg?style=for-the-badge&logo=safari)](https://summyfeb12.github.io/airportlounges-waitlist-links/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-orange.svg?style=for-the-badge)](CONTRIBUTING.md)
@@ -23,7 +23,7 @@
 ### ⚡ Quick Navigation / Jump Filter
 
 **By Airport Code:**
-[`ATL`](#atl) · [`BOS`](#bos) · [`BUF`](#buf) · [`BWI`](#bwi) · [`CHS`](#chs) · [`CLE`](#cle) · [`CLT`](#clt) · [`CVG`](#cvg) · [`DFW`](#dfw) · [`GRR`](#grr) · [`LAS`](#las) · [`LTN`](#ltn) · [`MCO`](#mco) · [`MDW`](#mdw) · [`MEX`](#mex) · [`MSY`](#msy) · [`NLU`](#nlu) · [`OAK`](#oak) · [`PIT`](#pit) · [`SAN`](#san) · [`SEA`](#sea) · [`SFO`](#sfo) · [`SJC`](#sjc) · [`YYZ`](#yyz)
+[`ATL`](#atl) · [`BOS`](#bos) · [`BRS`](#brs) · [`BUF`](#buf) · [`BWI`](#bwi) · [`CHS`](#chs) · [`CLE`](#cle) · [`CLT`](#clt) · [`CVG`](#cvg) · [`DFW`](#dfw) · [`GRR`](#grr) · [`LAS`](#las) · [`LTN`](#ltn) · [`MCO`](#mco) · [`MDW`](#mdw) · [`MEX`](#mex) · [`MSY`](#msy) · [`NLU`](#nlu) · [`OAK`](#oak) · [`PIT`](#pit) · [`SAN`](#san) · [`SEA`](#sea) · [`SFO`](#sfo) · [`SJC`](#sjc) · [`YYZ`](#yyz)
 
 **By Network:**
 [`Escape Lounges`](#escape-lounges) · [`Independent`](#independent) · [`Plaza Premium`](#plaza-premium) · [`Priority Pass`](#priority-pass) · [`The Club`](#the-club)
@@ -36,6 +36,7 @@
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :---: |
 | <a id="atl"></a>**ATL**<br>_Atlanta_ | Concourse F, Mezzanine Level | **The Club ATL** | `The Club` | <a href="https://waitwhile.com/locations/the-club-atl" target="_blank" rel="noopener noreferrer"><b>Join Waitlist</b> ↗</a> | — | Priority Pass and day-pass accepted. Join Waitwhile queue when full. | `2026-08-14` |
 | <a id="bos"></a>**BOS**<br>_Boston_ | Terminal C, near Gate C19 | **The Lounge BOS (The Club)** | `The Club` | <a href="https://waitwhile.com/locations/the-club-bos" target="_blank" rel="noopener noreferrer"><b>Join Waitlist</b> ↗</a> | — | Direct Waitwhile queue link for Terminal C lounge. | `2026-08-14` |
+| <a id="brs"></a>**BRS**<br>_Bristol_ | Main Terminal, Mezzanine Level after Security, next to Frankie & Benny's | **Escape Lounge (Essence)** | `Escape Lounges` | <a href="https://419409.waitwell.us/" target="_blank" rel="noopener noreferrer"><b>Join Waitlist</b> ↗</a> | — | WaitWell digital queue link. | `2026-08-29` |
 | <a id="buf"></a>**BUF**<br>_Buffalo_ | Main Terminal, between Gates 6 and 7 | **The Club BUF** | `The Club` | <a href="https://waitwhile.com/locations/the-club-buf" target="_blank" rel="noopener noreferrer"><b>Join Waitlist</b> ↗</a> | — | Priority Pass accessible. Mobile queue via Waitwhile. | `2026-08-14` |
 | <a id="bwi"></a>**BWI**<br>_Baltimore_ | Concourse D, near Gate D10 | **The Club BWI** | `The Club` | <a href="https://waitwhile.com/locations/the-club-bwi" target="_blank" rel="noopener noreferrer"><b>Join Waitlist</b> ↗</a> | — | Priority Pass accepted. Join digital line via Waitwhile. | `2026-08-14` |
 | <a id="chs"></a>**CHS**<br>_Charleston_ | Main Terminal, 2nd Floor towards Concourse B | **The Club CHS** | `The Club` | <a href="https://waitwhile.com/locations/the-club-chs" target="_blank" rel="noopener noreferrer"><b>Join Waitlist</b> ↗</a> | — | Accessible to all ticketed passengers post-security. | `2026-08-14` |
@@ -68,17 +69,19 @@
 | <a id="sfo"></a>**SFO**<br>_San Francisco_ | Harvey Milk Terminal 1, near Gate B4 | **The Club SFO** | `The Club` | <a href="https://waitwhile.com/locations/the-club-sfo" target="_blank" rel="noopener noreferrer"><b>Join Waitlist</b> ↗</a> | — | Features microclimate fireplace, fitness room, and local microbrews. | `2026-08-14` |
 | <a id="sjc"></a>**SJC**<br>_San Jose_ | Terminal A, across from Gate 15 | **The Club SJC (Gate 15)** | `The Club` | <a href="https://waitwhile.com/locations/the-club-sjc-a15" target="_blank" rel="noopener noreferrer"><b>Join Waitlist</b> ↗</a> | — | Waitwhile queue for Terminal A Gate 15 location. | `2026-08-14` |
 | **SJC**<br>_San Jose_ | Terminal A, across from Gate 8 | **The Club SJC (Gate 8)** | `The Club` | <a href="https://waitwhile.com/locations/the-club-sjc-a8" target="_blank" rel="noopener noreferrer"><b>Join Waitlist</b> ↗</a> | — | Waitwhile queue for Terminal A Gate 8 location. | `2026-08-14` |
-| <a id="yyz"></a>**YYZ**<br>_Toronto_ | Terminal 1, Departures, between Gates F33 and F55 | **Plaza Premium Lounge (USA Transborder)** | `Plaza Premium` | <a href="https://waitwhile.com/locations/yyzt1ustransborderde?qr=true" target="_blank" rel="noopener noreferrer"><b>Join Waitlist</b> ↗</a> | — | Priority Pass and Capital One cardholder access accepted. Join digital Waitwhile waitlist when full. | `2026-08-27` |
+| <a id="yyz"></a>**YYZ**<br>_Toronto_ | Terminal 1, Level 3, Domestic Departures near Gate D20 | **Plaza Premium Lounge (Domestic Departures)** | `Plaza Premium` | <a href="https://waitwhile.com/locations/yyzt1domesticdepartu?qr=true" target="_blank" rel="noopener noreferrer"><b>Join Waitlist</b> ↗</a> | — | Terminal 1 domestic departures; can also be used for international departures if entering security at D gates. Priority Pass and Capital One accepted. | `2026-08-29` |
+| **YYZ**<br>_Toronto_ | Terminal 1, Departures, between Gates F33 and F55 | **Plaza Premium Lounge (USA Transborder)** | `Plaza Premium` | <a href="https://waitwhile.com/locations/yyzt1ustransborderde?qr=true" target="_blank" rel="noopener noreferrer"><b>Join Waitlist</b> ↗</a> | — | Priority Pass and Capital One cardholder access accepted. Join digital Waitwhile waitlist when full. | `2026-08-27` |
 
 ---
 
 ### 🌐 Lounges by Network
 
 <details id="escape-lounges">
-<summary><b>Escape Lounges (1)</b></summary>
+<summary><b>Escape Lounges (2)</b></summary>
 
 | Airport | Terminal | Lounge | Waitlist (Live Queue) | Advance Booking | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
+| **BRS** | Main Terminal, Mezzanine Level after Security, next to Frankie & Benny's | Escape Lounge (Essence) | <a href="https://419409.waitwell.us/" target="_blank" rel="noopener noreferrer"><b>Join Waitlist</b> ↗</a> | — | WaitWell digital queue link. |
 | **OAK** | Terminal 1, opposite Gate 9 | Escape Lounge OAK | — | <a href="https://oak.book.escapelounges.com/lounges/dates/" target="_blank" rel="noopener noreferrer"><b>Reserve</b> ↗</a><br><sub>(Fee / Paid booking)</sub> | Escape Lounges' own booking engine. Book at least 24 hours ahead; cheaper than walking up. Amex Platinum and Delta Reserve access at the door. |
 
 </details>
@@ -100,12 +103,13 @@
 </details>
 
 <details id="plaza-premium">
-<summary><b>Plaza Premium (3)</b></summary>
+<summary><b>Plaza Premium (4)</b></summary>
 
 | Airport | Terminal | Lounge | Waitlist (Live Queue) | Advance Booking | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **DFW** | Terminal D, near Gate D18 | Plaza Premium Lounge | <a href="https://waitwhile.com/locations/plazapremiumloungete0934?registration=waitlist" target="_blank" rel="noopener noreferrer"><b>Join Waitlist</b> ↗</a> | — | Priority Pass and Capital One cardholder access accepted. Join digital Waitwhile waitlist when full. |
 | **DFW** | Terminal E, near Gate E31 | Plaza Premium Lounge | <a href="https://waitwhile.com/locations/plazapremiumdfw/party-size?qr=true" target="_blank" rel="noopener noreferrer"><b>Join Waitlist</b> ↗</a> | — | Priority Pass and Capital One cardholder access accepted. Join digital Waitwhile waitlist when full. |
+| **YYZ** | Terminal 1, Level 3, Domestic Departures near Gate D20 | Plaza Premium Lounge (Domestic Departures) | <a href="https://waitwhile.com/locations/yyzt1domesticdepartu?qr=true" target="_blank" rel="noopener noreferrer"><b>Join Waitlist</b> ↗</a> | — | Terminal 1 domestic departures; can also be used for international departures if entering security at D gates. Priority Pass and Capital One accepted. |
 | **YYZ** | Terminal 1, Departures, between Gates F33 and F55 | Plaza Premium Lounge (USA Transborder) | <a href="https://waitwhile.com/locations/yyzt1ustransborderde?qr=true" target="_blank" rel="noopener noreferrer"><b>Join Waitlist</b> ↗</a> | — | Priority Pass and Capital One cardholder access accepted. Join digital Waitwhile waitlist when full. |
 
 </details>

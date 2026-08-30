@@ -26,6 +26,19 @@
     "last_verified": "2026-08-14"
   },
   {
+    "id": "brs-tm-escape-lounge",
+    "airport_code": "BRS",
+    "airport_name": "Bristol Airport",
+    "city": "Bristol",
+    "country": "GB",
+    "terminal": "Main Terminal, Mezzanine Level after Security, next to Frankie & Benny's",
+    "lounge_name": "Escape Lounge (Essence)",
+    "network": "Escape Lounges",
+    "waitlist_url": "https://419409.waitwell.us/",
+    "notes": "WaitWell digital queue link.",
+    "last_verified": "2026-08-29"
+  },
+  {
     "id": "buf-tm-the-club",
     "airport_code": "BUF",
     "airport_name": "Buffalo Niagara International Airport",
@@ -449,7 +462,20 @@
     "last_verified": "2026-08-14"
   },
   {
-    "id": "yyz-t1-plaza-premium",
+    "id": "yyz-t1-plaza-premium-domestic",
+    "airport_code": "YYZ",
+    "airport_name": "Toronto Pearson International Airport",
+    "city": "Toronto",
+    "country": "CA",
+    "terminal": "Terminal 1, Level 3, Domestic Departures near Gate D20",
+    "lounge_name": "Plaza Premium Lounge (Domestic Departures)",
+    "network": "Plaza Premium",
+    "waitlist_url": "https://waitwhile.com/locations/yyzt1domesticdepartu?qr=true",
+    "notes": "Terminal 1 domestic departures; can also be used for international departures if entering security at D gates. Priority Pass and Capital One accepted.",
+    "last_verified": "2026-08-29"
+  },
+  {
+    "id": "yyz-t1-plaza-premium-us",
     "airport_code": "YYZ",
     "airport_name": "Toronto Pearson International Airport",
     "city": "Toronto",
