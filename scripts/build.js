@@ -57,17 +57,57 @@ function formatNotesCell(notes) {
   return `<details><summary><b>View Notes</b></summary>${cleanNotes}</details>`;
 }
 
+function getCountryFlag(countryCode) {
+  if (!countryCode || countryCode.length !== 2) return '🌐';
+  const codePoints = countryCode
+    .toUpperCase()
+    .split('')
+    .map((char) => 127397 + char.charCodeAt(0));
+  return String.fromCodePoint(...codePoints);
+}
+
+const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+
 function generateMarkdownTable(lounges) {
   let md = '';
 
-  // 1. Quick Jump Navigation Bar by Airport & Network
-  const uniqueAirports = [...new Set(lounges.map((l) => l.airport_code))].sort();
+  // 1. Quick Jump Navigation Bar by Country/Airport & Network
+  const countriesMap = {};
+  lounges.forEach((l) => {
+    const cc = l.country.toUpperCase();
+    if (!countriesMap[cc]) {
+      let name = cc;
+      try {
+        name = regionNames.of(cc) || cc;
+      } catch {
+        name = cc;
+      }
+      countriesMap[cc] = {
+        code: cc,
+        name,
+        flag: getCountryFlag(cc),
+        airports: new Set(),
+      };
+    }
+    countriesMap[cc].airports.add(l.airport_code);
+  });
+
+  const sortedCountries = Object.values(countriesMap).sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
+
   const uniqueNetworks = [...new Set(lounges.map((l) => l.network))].sort();
 
   md += `### ⚡ Quick Navigation / Jump Filter\n\n`;
-  md += `**By Airport Code:**\n`;
-  md += uniqueAirports.map((code) => `[\`${code}\`](#${code.toLowerCase()})`).join(' · ');
-  md += `\n\n`;
+  md += `**By Country & Airport:**\n`;
+  sortedCountries.forEach((c) => {
+    const airportLinks = [...c.airports]
+      .sort()
+      .map((code) => `[\`${code}\`](#${code.toLowerCase()})`)
+      .join(' · ');
+    md += `- ${c.flag} **${c.name}** (\`${c.code}\`): ${airportLinks}\n`;
+  });
+  md += `\n`;
   md += `**By Network:**\n`;
   md += uniqueNetworks
     .map(

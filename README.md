@@ -22,8 +22,27 @@
 <!-- TABLE_START -->
 ### ⚡ Quick Navigation / Jump Filter
 
-**By Airport Code:**
-[`ABZ`](#abz) · [`AGA`](#aga) · [`AMS`](#ams) · [`ANC`](#anc) · [`ARN`](#arn) · [`ATL`](#atl) · [`BHD`](#bhd) · [`BHX`](#bhx) · [`BOS`](#bos) · [`BRS`](#brs) · [`BSL`](#bsl) · [`BUF`](#buf) · [`BWI`](#bwi) · [`CHS`](#chs) · [`CLE`](#cle) · [`CLT`](#clt) · [`CMN`](#cmn) · [`CPH`](#cph) · [`CVG`](#cvg) · [`DFW`](#dfw) · [`EDI`](#edi) · [`FEZ`](#fez) · [`GLA`](#gla) · [`GRR`](#grr) · [`GRZ`](#grz) · [`GVA`](#gva) · [`HEL`](#hel) · [`HUY`](#huy) · [`IAD`](#iad) · [`INV`](#inv) · [`JFK`](#jfk) · [`JNB`](#jnb) · [`JRO`](#jro) · [`LAS`](#las) · [`LAX`](#lax) · [`LGW`](#lgw) · [`LHR`](#lhr) · [`LPL`](#lpl) · [`LTN`](#ltn) · [`MAN`](#man) · [`MCO`](#mco) · [`MDW`](#mdw) · [`MEL`](#mel) · [`MEX`](#mex) · [`MSY`](#msy) · [`NBO`](#nbo) · [`NCL`](#ncl) · [`NLU`](#nlu) · [`NRT`](#nrt) · [`OAK`](#oak) · [`ONT`](#ont) · [`OUD`](#oud) · [`PDX`](#pdx) · [`PER`](#per) · [`PIT`](#pit) · [`SAN`](#san) · [`SEA`](#sea) · [`SFO`](#sfo) · [`SJC`](#sjc) · [`SYD`](#syd) · [`TLV`](#tlv) · [`TNG`](#tng) · [`VCE`](#vce) · [`VIL`](#vil) · [`VNO`](#vno) · [`VRN`](#vrn) · [`YOW`](#yow) · [`YTZ`](#ytz) · [`YUL`](#yul) · [`YYC`](#yyc) · [`YYZ`](#yyz) · [`ZRH`](#zrh)
+**By Country & Airport:**
+- 🇦🇺 **Australia** (`AU`): [`MEL`](#mel) · [`PER`](#per) · [`SYD`](#syd)
+- 🇦🇹 **Austria** (`AT`): [`GRZ`](#grz)
+- 🇨🇦 **Canada** (`CA`): [`YOW`](#yow) · [`YTZ`](#ytz) · [`YUL`](#yul) · [`YYC`](#yyc) · [`YYZ`](#yyz)
+- 🇩🇰 **Denmark** (`DK`): [`CPH`](#cph)
+- 🇫🇮 **Finland** (`FI`): [`HEL`](#hel)
+- 🇫🇷 **France** (`FR`): [`BSL`](#bsl)
+- 🇮🇱 **Israel** (`IL`): [`TLV`](#tlv)
+- 🇮🇹 **Italy** (`IT`): [`VCE`](#vce) · [`VRN`](#vrn)
+- 🇯🇵 **Japan** (`JP`): [`NRT`](#nrt)
+- 🇰🇪 **Kenya** (`KE`): [`NBO`](#nbo)
+- 🇱🇹 **Lithuania** (`LT`): [`VNO`](#vno)
+- 🇲🇽 **Mexico** (`MX`): [`MEX`](#mex) · [`NLU`](#nlu)
+- 🇲🇦 **Morocco** (`MA`): [`AGA`](#aga) · [`CMN`](#cmn) · [`FEZ`](#fez) · [`OUD`](#oud) · [`TNG`](#tng) · [`VIL`](#vil)
+- 🇳🇱 **Netherlands** (`NL`): [`AMS`](#ams)
+- 🇿🇦 **South Africa** (`ZA`): [`JNB`](#jnb)
+- 🇸🇪 **Sweden** (`SE`): [`ARN`](#arn)
+- 🇨🇭 **Switzerland** (`CH`): [`GVA`](#gva) · [`ZRH`](#zrh)
+- 🇹🇿 **Tanzania** (`TZ`): [`JRO`](#jro)
+- 🇬🇧 **United Kingdom** (`GB`): [`ABZ`](#abz) · [`BHD`](#bhd) · [`BHX`](#bhx) · [`BRS`](#brs) · [`EDI`](#edi) · [`GLA`](#gla) · [`HUY`](#huy) · [`INV`](#inv) · [`LGW`](#lgw) · [`LHR`](#lhr) · [`LPL`](#lpl) · [`LTN`](#ltn) · [`MAN`](#man) · [`NCL`](#ncl)
+- 🇺🇸 **United States** (`US`): [`ANC`](#anc) · [`ATL`](#atl) · [`BOS`](#bos) · [`BUF`](#buf) · [`BWI`](#bwi) · [`CHS`](#chs) · [`CLE`](#cle) · [`CLT`](#clt) · [`CVG`](#cvg) · [`DFW`](#dfw) · [`GRR`](#grr) · [`IAD`](#iad) · [`JFK`](#jfk) · [`LAS`](#las) · [`LAX`](#lax) · [`MCO`](#mco) · [`MDW`](#mdw) · [`MSY`](#msy) · [`OAK`](#oak) · [`ONT`](#ont) · [`PDX`](#pdx) · [`PIT`](#pit) · [`SAN`](#san) · [`SEA`](#sea) · [`SFO`](#sfo) · [`SJC`](#sjc)
 
 **By Network:**
 [`Aspire`](#aspire) · [`Escape Lounges`](#escape-lounges) · [`Independent`](#independent) · [`Plaza Premium`](#plaza-premium) · [`Priority Pass`](#priority-pass) · [`The Club`](#the-club)
