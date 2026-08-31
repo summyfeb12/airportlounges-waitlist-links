@@ -6,6 +6,7 @@
   "scripts": {
     "validate": "node scripts/validate.js",
     "build": "node scripts/build.js",
+    "build:assets": "node scripts/build.js --assets",
     "test": "npm run validate"
   },
   "keywords": [

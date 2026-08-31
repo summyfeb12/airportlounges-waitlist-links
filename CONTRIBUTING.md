@@ -132,6 +132,8 @@ If you cannot confirm which, leave `booking_url` out rather than guessing. Telli
    ```
    > 💡 **Note:** You only need to edit `data/lounges.json`. You do **not** need to build or commit `README.md` or PDF files — our automated CI pipeline regenerates all tables, search apps, and PDF exports automatically when your PR is merged.
 
+   `npm test` sorts the dataset for you if your entry landed out of order, so ordering is never something you have to fix by hand — just commit the result. `npm run build` formats the data file and nothing else. If you want the README, web app and PDF locally, `npm run build:assets` generates them, but do not commit them.
+
 5. **Commit your changes and open a Pull Request**.
 
 ---

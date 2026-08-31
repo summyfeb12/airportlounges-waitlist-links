@@ -124,11 +124,14 @@ function validate() {
   });
 
   if (!isSorted) {
-    console.error(
-      '❌ data/lounges.json is not properly sorted. Must be sorted by airport_code then id.'
+    // Sorting is deterministic and has one right answer, so fixing it is more
+    // use than failing on it. Contributors edit data by hand; ordering should
+    // not be their problem.
+    const sorted = [...lounges].sort((a, b) =>
+      a.airport_code.localeCompare(b.airport_code) || a.id.localeCompare(b.id)
     );
-    console.error('💡 Run `npm run build` to auto-sort the dataset.');
-    hasErrors = true;
+    fs.writeFileSync(dataPath, JSON.stringify(sorted, null, 2) + '\n', 'utf8');
+    console.log('🔤 Dataset was out of order — sorted it (by airport_code, id). Commit the change.');
   } else {
     console.log('✅ Dataset sorting verified (by airport_code, id).');
   }

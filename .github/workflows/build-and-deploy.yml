@@ -34,7 +34,7 @@ jobs:
         run: npm ci
 
       - name: Build assets (README table, PDF, Web App)
-        run: npm run build
+        run: npm run build:assets
 
       - name: Commit & Push updated assets directly to main
         uses: stefanzweifel/git-auto-commit-action@v5

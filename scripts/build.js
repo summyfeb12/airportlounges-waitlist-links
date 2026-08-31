@@ -804,7 +804,12 @@ function generatePDF(lounges) {
 }
 
 async function build() {
-  console.log('🚀 Running build...');
+  // Contributors commit only data/lounges.json, so the default build does only
+  // that. CI passes --assets to regenerate the README, web app and PDF; anyone
+  // wanting them locally can pass it too.
+  const withAssets = process.argv.includes('--assets');
+
+  console.log(withAssets ? '🚀 Running full build...' : '🚀 Formatting dataset...');
   const lounges = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
 
   // Strip deprecated fields and sort
@@ -816,6 +821,13 @@ async function build() {
 
   // Write sorted data back to ensure formatting consistency
   fs.writeFileSync(dataPath, JSON.stringify(sorted, null, 2) + '\n', 'utf8');
+
+  if (!withAssets) {
+    console.log(`✅ data/lounges.json sorted and formatted (${sorted.length} lounges).`);
+    console.log('   README, web app and PDF untouched — CI builds those on merge.');
+    console.log('   Need them locally? npm run build:assets');
+    return;
+  }
 
   // 1. Build README Table
   const tableContent = generateMarkdownTable(sorted);
