@@ -481,6 +481,45 @@ function generateWebSearchApp(lounges) {
       padding: 4rem 1rem;
       color: var(--text-muted);
     }
+    footer.app-footer {
+      margin-top: 4rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .footer-section {
+      background: rgba(15, 23, 42, 0.4);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+    }
+    .footer-section h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .footer-section a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .footer-section a:hover {
+      text-decoration: underline;
+    }
+    .footer-bottom {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #64748b;
+      padding-bottom: 1.5rem;
+    }
   </style>
 </head>
 <body>
@@ -518,6 +557,27 @@ function generateWebSearchApp(lounges) {
     </div>
 
     <div id="loungesGrid" class="grid"></div>
+
+    <footer class="app-footer">
+      <div class="footer-section">
+        <h3>🔗 Related Projects</h3>
+        <p>🚦 <a href="https://lounge-waitlist.vercel.app/" target="_blank" rel="noopener noreferrer"><b>Priority Pass LoungeQ</b></a> — Live queue tracker showing walk-in-ready vs. active-line status and estimated wait for ~30 US lounges, read from public Waitwhile queues. Source on GitHub: <a href="https://github.com/manojnagendra/priority-pass-lounge-waitlist-monitor" target="_blank" rel="noopener noreferrer">manojnagendra/priority-pass-lounge-waitlist-monitor</a>. (Independent project, not affiliated with this repository).</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>🤝 Contributing</h3>
+        <p>Found a new lounge waitlist link or notice an expired queue URL? We welcome contributions! Check our <a href="https://github.com/summyfeb12/airportlounges-waitlist-links/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contributing Guide</a> and edit <a href="https://github.com/summyfeb12/airportlounges-waitlist-links/blob/main/data/lounges.json" target="_blank" rel="noopener noreferrer">data/lounges.json</a> to submit a PR.</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>⚠️ Disclaimer</h3>
+        <p>This repository and project are an independent, community-driven, crowd-sourced effort. It is <b>not affiliated with, endorsed by, or sponsored by</b> any airport, airline, lounge operator, financial institution, or credit card network (including but not limited to American Express, Chase, Capital One, Delta Air Lines, United Airlines, American Airlines, Priority Pass, Plaza Premium, or others). All trademarks, logos, and brand names are the property of their respective owners.</p>
+      </div>
+
+      <div class="footer-bottom">
+        <p>Dedicated to the public domain under <a href="https://github.com/summyfeb12/airportlounges-waitlist-links/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" style="color: #64748b; text-decoration: underline;">The Unlicense</a>.</p>
+      </div>
+    </footer>
   </div>
 
   <script>
