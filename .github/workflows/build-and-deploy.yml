@@ -21,6 +21,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          token: ${{ secrets.PAT_TOKEN || github.token }}
           fetch-depth: 0
 
       - name: Setup Node.js
@@ -35,15 +36,13 @@ jobs:
       - name: Build assets (README table, PDF, Web App)
         run: npm run build
 
-      - name: Commit & Push updated assets via Pull Request
-        uses: peter-evans/create-pull-request@v5
+      - name: Commit & Push updated assets directly to main
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          token: ${{ secrets.PAT_TOKEN }}
-          commit-message: "chore: update generated README table and PDF assets [skip ci]"
-          title: "chore: update generated assets"
-          body: "Auto-generated assets update"
-          branch: "chore/update-assets"
-          delete-branch: true
+          commit_message: "chore: update generated README table and PDF assets [skip ci]"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "github-actions[bot]@users.noreply.github.com"
+          file_pattern: "README.md assets/lounges.pdf data/lounges.json"
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3

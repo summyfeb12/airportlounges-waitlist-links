@@ -21,16 +21,5 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Schema and ID Validation
-        run: npm run validate
-
-      - name: Verify README & Artifacts are in sync
-        run: |
-          npm run build
-          if [ -n "$(git status --porcelain README.md data/lounges.json)" ]; then
-            echo "❌ Error: README.md or data/lounges.json is out of sync with the build output."
-            echo "Please run 'npm run build' locally, commit the changes, and push again."
-            git diff
-            exit 1
-          fi
-          echo "✅ All data and generated tables are in sync!"
+      - name: Run Schema, ID, and URL Validation
+        run: npm test

@@ -107,6 +107,7 @@ If you cannot confirm which, leave `booking_url` out rather than guessing. Telli
 - `American Airlines Admirals Club`
 - `Priority Pass`
 - `Plaza Premium`
+- `Aspire`
 - `Escape Lounges`
 - `The Club`
 - `Air France / KLM Lounge`
@@ -125,14 +126,12 @@ If you cannot confirm which, leave `booking_url` out rather than guessing. Telli
    npm install
    ```
 3. **Add or update entries** in [`data/lounges.json`](data/lounges.json).
-4. **Run build & validation**:
+4. **Validate your data locally**:
    ```bash
-   # Rebuilds README table, Web Search App, and PDF
-   npm run build
-
-   # Validates schema, ID rules, URLs, and sorting
-   npm run validate
+   npm test
    ```
+   > 💡 **Note:** You only need to edit `data/lounges.json`. You do **not** need to build or commit `README.md` or PDF files — our automated CI pipeline regenerates all tables, search apps, and PDF exports automatically when your PR is merged.
+
 5. **Commit your changes and open a Pull Request**.
 
 ---
@@ -144,5 +143,4 @@ All Pull Requests trigger an automated CI check (`.github/workflows/validate-pr.
 2. Any `id` doesn't follow the `<iata>-<terminal>-<slug>` convention or is a duplicate.
 3. Any `waitlist_url` or `booking_url` is not a valid HTTPS URL.
 4. A `booking_url` is present without a `booking_cost`, or the reverse.
-4. The dataset is out of sort order (run `npm run build` to fix).
-5. The `README.md` table is out of sync with `data/lounges.json`.
+5. The dataset is out of sort order (sorted by `airport_code` ASC, then `id` ASC).
