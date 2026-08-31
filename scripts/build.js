@@ -603,6 +603,9 @@ function generateWebSearchApp(lounges) {
           actionButtons.push(\`<a href="\${l.booking_url}" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.75rem; border-radius: 8px; border-color: rgba(56, 189, 248, 0.3);">Reserve ↗ \${costBadge}</a>\`);
         }
 
+        const cleanCardNotes = (l.notes || 'No specific queue restrictions noted.')
+          .replace(/<\/?(details|summary|b)>/gi, '');
+
         return \`
         <div class="card">
           <div>
@@ -615,7 +618,7 @@ function generateWebSearchApp(lounges) {
             </div>
             <div class="lounge-title">\${l.lounge_name}</div>
             <div class="terminal-info">📍 \${l.terminal}</div>
-            <div class="notes-box">\${l.notes || 'No specific queue restrictions noted.'}</div>
+            <div class="notes-box">\${cleanCardNotes}</div>
           </div>
           <div class="card-footer" style="gap: 0.5rem; flex-wrap: wrap;">
             <span class="verified-text">Verified: \${l.last_verified}</span>
