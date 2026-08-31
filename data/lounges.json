@@ -96,6 +96,20 @@
     "last_verified": "2026-08-14"
   },
   {
+    "id": "bdl-tm-escape-lounge",
+    "airport_code": "BDL",
+    "airport_name": "Bradley International Airport",
+    "city": "Hartford",
+    "country": "US",
+    "terminal": "By Gate 1",
+    "lounge_name": "Escape Lounge BDL",
+    "network": "Escape Lounges",
+    "booking_url": "https://bdl.book.escapelounges.com/lounges/dates/",
+    "booking_cost": "cash",
+    "notes": "Pre-book at least 24 hours ahead or walk up. Free access for Amex Platinum Card Members and Delta SkyMiles Reserve Card Members (Delta Reserve requires a Delta-marketed flight that day). Priority Pass pre-book advertised by the operator.",
+    "last_verified": "2026-08-27"
+  },
+  {
     "id": "bhd-tm-aspire-lounge",
     "airport_code": "BHD",
     "airport_name": "George Best Belfast City Airport",
@@ -176,6 +190,20 @@
     "waitlist_url": "https://419409.waitwell.us/",
     "notes": "WaitWell digital queue link.",
     "last_verified": "2026-08-29"
+  },
+  {
+    "id": "brs-tm-escape-lounge-first-floor",
+    "airport_code": "BRS",
+    "airport_name": "Bristol Airport",
+    "city": "Bristol",
+    "country": "GB",
+    "terminal": "First floor of the departure lounge, adjacent to the Cabin Bar",
+    "lounge_name": "Escape Lounge BRS (first floor)",
+    "network": "Escape Lounges",
+    "booking_url": "https://brs.book.escapelounges.com/lounges/dates/",
+    "booking_cost": "cash",
+    "notes": "Distinct from the Essence lounge on the mezzanine. Pre-book at least 24 hours ahead or walk up. Priority Pass, DragonPass, LoungeKey, Lounge Club, Diners Club and Dreamfolks accepted. No Amex or Delta access - that benefit is US-only.",
+    "last_verified": "2026-08-27"
   },
   {
     "id": "bsl-tm-sky-cafe-by-aspire",
@@ -271,6 +299,20 @@
     "last_verified": "2026-08-14"
   },
   {
+    "id": "cmh-tb-escape-lounge",
+    "airport_code": "CMH",
+    "airport_name": "John Glenn Columbus International Airport",
+    "city": "Columbus",
+    "country": "US",
+    "terminal": "Concourse B, by Gate 32",
+    "lounge_name": "Escape Lounge CMH",
+    "network": "Escape Lounges",
+    "booking_url": "https://cmh.book.escapelounges.com/lounges/dates/",
+    "booking_cost": "cash",
+    "notes": "Pre-book at least 24 hours ahead or walk up. Free access for Amex Platinum Card Members and Delta SkyMiles Reserve Card Members (Delta Reserve requires a Delta-marketed flight that day). Priority Pass pre-book advertised by the operator.",
+    "last_verified": "2026-08-27"
+  },
+  {
     "id": "cmn-t1-aspire-lounge",
     "airport_code": "CMN",
     "airport_name": "Mohammed V International Airport",
@@ -340,6 +382,20 @@
     "last_verified": "2026-08-14"
   },
   {
+    "id": "cvg-tb-escape-lounge",
+    "airport_code": "CVG",
+    "airport_name": "Cincinnati/Northern Kentucky International Airport",
+    "city": "Cincinnati",
+    "country": "US",
+    "terminal": "Concourse B, near Gate B12",
+    "lounge_name": "Escape Lounge CVG",
+    "network": "Escape Lounges",
+    "booking_url": "https://cvg.book.escapelounges.com/lounges/dates/",
+    "booking_cost": "cash",
+    "notes": "Pre-book at least 24 hours ahead or walk up. Free access for Amex Platinum Card Members and Delta SkyMiles Reserve Card Members (Delta Reserve requires a Delta-marketed flight that day). Priority Pass pre-book advertised by the operator. Relocated to a new space.",
+    "last_verified": "2026-08-27"
+  },
+  {
     "id": "dfw-td-plaza-premium",
     "airport_code": "DFW",
     "airport_name": "Dallas/Fort Worth International Airport",
@@ -379,6 +435,20 @@
     "last_verified": "2026-08-27"
   },
   {
+    "id": "djt-tm-escape-lounge",
+    "airport_code": "DJT",
+    "airport_name": "President Donald J. Trump International Airport",
+    "city": "West Palm Beach",
+    "country": "US",
+    "terminal": "Just past the entrance to the A and B concourses",
+    "lounge_name": "Escape Lounge DJT (Centurion Studio Partner)",
+    "network": "Escape Lounges",
+    "booking_url": "https://pbi.book.escapelounges.com/lounges/dates/",
+    "booking_cost": "cash",
+    "notes": "Pre-book at least 24 hours ahead or walk up. Free access for Amex Platinum Card Members and Delta SkyMiles Reserve Card Members (Delta Reserve requires a Delta-marketed flight that day). Airport renamed from Palm Beach International; IATA code changed from PBI to DJT on 2026-08-18. The booking subdomain still uses pbi.",
+    "last_verified": "2026-08-27"
+  },
+  {
     "id": "edi-tm-aspire-lounge",
     "airport_code": "EDI",
     "airport_name": "Edinburgh Airport",
@@ -404,6 +474,20 @@
     "booking_url": "https://www.aspirelounges.com/airport-lounges/fes-sais-international-airport-aspire-lounge/",
     "booking_cost": "cash",
     "notes": "Operator's own lounge page with a Book this lounge form. Open to all passengers; Priority Pass, DragonPass and Dreamfolks accepted at most locations - check the page for this lounge. Priority Pass, DragonPass and Dreamfolks holders can pre-book against a membership credit instead, and pay the walk-up price only if short of credits on the day.",
+    "last_verified": "2026-08-27"
+  },
+  {
+    "id": "fll-t3-escape-lounge",
+    "airport_code": "FLL",
+    "airport_name": "Fort Lauderdale-Hollywood International Airport",
+    "city": "Fort Lauderdale",
+    "country": "US",
+    "terminal": "Terminal 3, Level 2, after the security checkpoint and walkway to Gates E1-E10",
+    "lounge_name": "Escape Lounge FLL (Centurion Studio Partner)",
+    "network": "Escape Lounges",
+    "booking_url": "https://fll.book.escapelounges.com/lounges/dates/",
+    "booking_cost": "cash",
+    "notes": "Pre-book at least 24 hours ahead or walk up. Free access for Amex Platinum Card Members and Delta SkyMiles Reserve Card Members (Delta Reserve requires a Delta-marketed flight that day).",
     "last_verified": "2026-08-27"
   },
   {
@@ -1121,6 +1205,34 @@
     "last_verified": "2026-08-27"
   },
   {
+    "id": "phx-t3-escape-lounge",
+    "airport_code": "PHX",
+    "airport_name": "Phoenix Sky Harbor International Airport",
+    "city": "Phoenix",
+    "country": "US",
+    "terminal": "Terminal 3, at the intersection of the E and F gates",
+    "lounge_name": "Escape Lounge PHX Terminal 3",
+    "network": "Escape Lounges",
+    "booking_url": "https://phx.book.escapelounges.com/lounges/dates/",
+    "booking_cost": "cash",
+    "notes": "Pre-book at least 24 hours ahead or walk up. Free access for Amex Platinum Card Members and Delta SkyMiles Reserve Card Members (Delta Reserve requires a Delta-marketed flight that day). Priority Pass pre-book advertised by the operator. One booking URL serves both PHX lounges; pick the terminal in the flow.",
+    "last_verified": "2026-08-27"
+  },
+  {
+    "id": "phx-t4-escape-lounge",
+    "airport_code": "PHX",
+    "airport_name": "Phoenix Sky Harbor International Airport",
+    "city": "Phoenix",
+    "country": "US",
+    "terminal": "Terminal 4, Concourse B, across from Gate B22",
+    "lounge_name": "Escape Lounge PHX Terminal 4",
+    "network": "Escape Lounges",
+    "booking_url": "https://phx.book.escapelounges.com/lounges/dates/",
+    "booking_cost": "cash",
+    "notes": "Pre-book at least 24 hours ahead or walk up. Free access for Amex Platinum Card Members and Delta SkyMiles Reserve Card Members (Delta Reserve requires a Delta-marketed flight that day). One booking URL serves both PHX lounges; pick the terminal in the flow.",
+    "last_verified": "2026-08-27"
+  },
+  {
     "id": "pit-tc-the-club",
     "airport_code": "PIT",
     "airport_name": "Pittsburgh International Airport",
@@ -1132,6 +1244,34 @@
     "waitlist_url": "https://waitwhile.com/locations/the-club-pit",
     "notes": "Priority Pass accepted. Join digital queue via Waitwhile.",
     "last_verified": "2026-08-14"
+  },
+  {
+    "id": "pvd-tm-escape-lounge",
+    "airport_code": "PVD",
+    "airport_name": "Rhode Island T. F. Green International Airport",
+    "city": "Providence",
+    "country": "US",
+    "terminal": "By Gate 18",
+    "lounge_name": "Escape Lounge PVD",
+    "network": "Escape Lounges",
+    "booking_url": "https://pvd.book.escapelounges.com/lounges/dates/",
+    "booking_cost": "cash",
+    "notes": "Pre-book at least 24 hours ahead or walk up. Free access for Amex Platinum Card Members and Delta SkyMiles Reserve Card Members (Delta Reserve requires a Delta-marketed flight that day). Priority Pass pre-book advertised by the operator.",
+    "last_verified": "2026-08-27"
+  },
+  {
+    "id": "rno-tm-escape-lounge",
+    "airport_code": "RNO",
+    "airport_name": "Reno-Tahoe International Airport",
+    "city": "Reno",
+    "country": "US",
+    "terminal": "Central corridor between Concourse B and Concourse C",
+    "lounge_name": "Escape Lounge RNO (Centurion Studio Partner)",
+    "network": "Escape Lounges",
+    "booking_url": "https://rno.book.escapelounges.com/lounges/dates/",
+    "booking_cost": "cash",
+    "notes": "Pre-book at least 24 hours ahead or walk up. Free access for Amex Platinum Card Members and Delta SkyMiles Reserve Card Members (Delta Reserve requires a Delta-marketed flight that day).",
+    "last_verified": "2026-08-27"
   },
   {
     "id": "san-t2-aspire",
@@ -1251,6 +1391,34 @@
     "last_verified": "2026-08-14"
   },
   {
+    "id": "smf-ta-escape-lounge",
+    "airport_code": "SMF",
+    "airport_name": "Sacramento International Airport",
+    "city": "Sacramento",
+    "country": "US",
+    "terminal": "Terminal A, near Gate A10",
+    "lounge_name": "Escape Lounge SMF Terminal A",
+    "network": "Escape Lounges",
+    "booking_url": "https://smf.book.escapelounges.com/lounges/dates/",
+    "booking_cost": "cash",
+    "notes": "Pre-book at least 24 hours ahead or walk up. Free access for Amex Platinum Card Members and Delta SkyMiles Reserve Card Members (Delta Reserve requires a Delta-marketed flight that day). Priority Pass pre-book advertised by the operator. One booking URL serves both SMF lounges; pick the terminal in the flow.",
+    "last_verified": "2026-08-27"
+  },
+  {
+    "id": "smf-tb-escape-lounge",
+    "airport_code": "SMF",
+    "airport_name": "Sacramento International Airport",
+    "city": "Sacramento",
+    "country": "US",
+    "terminal": "Terminal B, immediately left after exiting security",
+    "lounge_name": "Escape Lounge SMF Terminal B",
+    "network": "Escape Lounges",
+    "booking_url": "https://smf.book.escapelounges.com/lounges/dates/",
+    "booking_cost": "cash",
+    "notes": "Pre-book at least 24 hours ahead or walk up. Free access for Amex Platinum Card Members and Delta SkyMiles Reserve Card Members (Delta Reserve requires a Delta-marketed flight that day). Priority Pass pre-book advertised by the operator. One booking URL serves both SMF lounges; pick the terminal in the flow.",
+    "last_verified": "2026-08-27"
+  },
+  {
     "id": "syd-t1-the-house-by-aspire",
     "airport_code": "SYD",
     "airport_name": "Sydney Kingsford Smith Airport",
@@ -1262,6 +1430,20 @@
     "booking_url": "https://www.aspirelounges.com/airport-lounges/sydney-airport-the-house-by-aspire/",
     "booking_cost": "cash",
     "notes": "Operator's own lounge page with a Book this lounge form. Open to all passengers; Priority Pass, DragonPass and Dreamfolks accepted at most locations - check the page for this lounge. Priority Pass, DragonPass and Dreamfolks holders can pre-book against a membership credit instead, and pay the walk-up price only if short of credits on the day.",
+    "last_verified": "2026-08-27"
+  },
+  {
+    "id": "syr-tm-escape-lounge",
+    "airport_code": "SYR",
+    "airport_name": "Syracuse Hancock International Airport",
+    "city": "Syracuse",
+    "country": "US",
+    "terminal": "Between security and Concourse A, near Gate 1",
+    "lounge_name": "Escape Lounge SYR",
+    "network": "Escape Lounges",
+    "booking_url": "https://syr.book.escapelounges.com/lounges/dates/",
+    "booking_cost": "cash",
+    "notes": "Pre-book at least 24 hours ahead or walk up. Free access for Amex Platinum Card Members and Delta SkyMiles Reserve Card Members (Delta Reserve requires a Delta-marketed flight that day). Priority Pass pre-book advertised by the operator.",
     "last_verified": "2026-08-27"
   },
   {
