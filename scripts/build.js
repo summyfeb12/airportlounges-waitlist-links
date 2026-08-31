@@ -51,6 +51,12 @@ function sortLounges(lounges) {
   });
 }
 
+function formatNotesCell(notes) {
+  if (!notes || notes.trim() === '' || notes.trim() === '-') return '—';
+  const cleanNotes = notes.replace(/\|/g, '\\|').trim();
+  return `<details><summary><b>View Notes</b></summary>${cleanNotes}</details>`;
+}
+
 function generateMarkdownTable(lounges) {
   let md = '';
 
@@ -73,14 +79,14 @@ function generateMarkdownTable(lounges) {
 
   // 2. Main Lounges Table (Grouped by Airport)
   md += `### 🛫 Lounges Directory (Sorted by Airport)\n\n`;
-  md += `| Airport | Terminal / Location | Lounge Name | Network | Digital Waitlist (Live Queue) | Advance Booking / Reservation | Notes | Verified |\n`;
-  md += `| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :---: |\n`;
+  md += `| Airport | Lounge & Network | Terminal / Location | Digital Waitlist | Advance Booking | Notes | Verified |\n`;
+  md += `| :--- | :--- | :--- | :--- | :--- | :--- | :---: |\n`;
 
   let currentAirport = '';
   lounges.forEach((l) => {
     const waitlistDisplay = formatWaitlistCell(l);
     const bookingDisplay = formatBookingCell(l);
-    const notesDisplay = l.notes ? l.notes.replace(/\|/g, '\\|') : '-';
+    const notesDisplay = formatNotesCell(l.notes);
     const verifiedDisplay = `\`${l.last_verified}\``;
 
     // Anchor on first lounge of each airport; always show code and city consistently
@@ -90,7 +96,9 @@ function generateMarkdownTable(lounges) {
       currentAirport = l.airport_code;
     }
 
-    md += `| ${airportDisplay} | ${l.terminal.replace(/\|/g, '\\|')} | **${l.lounge_name.replace(/\|/g, '\\|')}** | \`${l.network}\` | ${waitlistDisplay} | ${bookingDisplay} | ${notesDisplay} | ${verifiedDisplay} |\n`;
+    const loungeAndNetwork = `**${l.lounge_name.replace(/\|/g, '\\|')}**<br><sub>\`${l.network}\`</sub>`;
+
+    md += `| ${airportDisplay} | ${loungeAndNetwork} | ${l.terminal.replace(/\|/g, '\\|')} | ${waitlistDisplay} | ${bookingDisplay} | ${notesDisplay} | ${verifiedDisplay} |\n`;
   });
 
   md += `\n---\n\n`;
@@ -102,12 +110,13 @@ function generateMarkdownTable(lounges) {
     const netLounges = lounges.filter((l) => l.network === net);
     md += `<details id="${netSlug}">\n`;
     md += `<summary><b>${net} (${netLounges.length})</b></summary>\n\n`;
-    md += `| Airport | Terminal | Lounge | Waitlist (Live Queue) | Advance Booking | Notes |\n`;
+    md += `| Airport | Lounge | Terminal | Digital Waitlist | Advance Booking | Notes |\n`;
     md += `| :--- | :--- | :--- | :--- | :--- | :--- |\n`;
     netLounges.forEach((l) => {
       const waitlistDisplay = formatWaitlistCell(l);
       const bookingDisplay = formatBookingCell(l);
-      md += `| **${l.airport_code}** | ${l.terminal.replace(/\|/g, '\\|')} | ${l.lounge_name.replace(/\|/g, '\\|')} | ${waitlistDisplay} | ${bookingDisplay} | ${l.notes || '-'} |\n`;
+      const notesDisplay = formatNotesCell(l.notes);
+      md += `| **${l.airport_code}** | **${l.lounge_name.replace(/\|/g, '\\|')}** | ${l.terminal.replace(/\|/g, '\\|')} | ${waitlistDisplay} | ${bookingDisplay} | ${notesDisplay} |\n`;
     });
     md += `\n</details>\n\n`;
   });
