@@ -50,10 +50,11 @@
     "terminal": "Non-Schengen area, Gates D/E/F/G past passport control",
     "lounge_name": "Aspire Lounge 41 (Non-Schengen)",
     "network": "Aspire",
+    "waitlist_url": "https://qrq.app/q/8773200",
     "booking_url": "https://www.aspirelounges.com/airport-lounges/amsterdam-schiphol-airport-aspire-lounge-41-non-schengen/",
     "booking_cost": "cash",
-    "notes": "Operator's own lounge page with a Book this lounge form. Open to all passengers; Priority Pass, DragonPass and Dreamfolks accepted at most locations - check the page for this lounge. Priority Pass, DragonPass and Dreamfolks holders can pre-book against a membership credit instead, and pay the walk-up price only if short of credits on the day.",
-    "last_verified": "2026-08-27"
+    "notes": "Real-time QRQ waitlist queue when lounge reaches capacity. Operator's own lounge page with a Book this lounge form. Open to all passengers; Priority Pass, DragonPass and Dreamfolks accepted at most locations - check the page for this lounge. Priority Pass, DragonPass and Dreamfolks holders can pre-book against a membership credit instead, and pay the walk-up price only if short of credits on the day.",
+    "last_verified": "2026-09-22"
   },
   {
     "id": "anc-tc-alaska-lounge",
