@@ -1137,6 +1137,19 @@
     "last_verified": "2026-08-27"
   },
   {
+    "id": "ogg-tm-hawaiian-premier-club-north",
+    "airport_code": "OGG",
+    "airport_name": "Kahului Airport",
+    "city": "Kahului",
+    "country": "US",
+    "terminal": "Main Terminal, second floor across from Gate 17",
+    "lounge_name": "Hawaiian Airlines Premier Club (North)",
+    "network": "Independent",
+    "waitlist_url": "https://waitlist.me/w/oggpremierclub",
+    "notes": "Hawaiian Airlines Premier Club (North). Digital Waitlist Me queue when the lounge is at capacity. Priority Pass and LoungeKey accepted (up to 3 hours). Provide flight number and departure time in waitlist notes.",
+    "last_verified": "2026-10-20"
+  },
+  {
     "id": "ont-t2-aspire-lounge",
     "airport_code": "ONT",
     "airport_name": "Ontario International Airport",
