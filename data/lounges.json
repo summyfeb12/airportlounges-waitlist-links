@@ -1683,6 +1683,19 @@
     "last_verified": "2026-08-27"
   },
   {
+    "id": "yyz-t3-plaza-premium-international",
+    "airport_code": "YYZ",
+    "airport_name": "Toronto Pearson International Airport",
+    "city": "Toronto",
+    "country": "CA",
+    "terminal": "Terminal 3, AT Level, International Departures, accessed via Gate C32",
+    "lounge_name": "Plaza Premium Lounge (International Departures)",
+    "network": "Plaza Premium",
+    "waitlist_url": "https://waitwhile.com/locations/yyzterminal3internat",
+    "notes": "Priority Pass accepted. Join the digital Waitwhile queue when the lounge is at capacity.",
+    "last_verified": "2026-11-14"
+  },
+  {
     "id": "zrh-tm-aspire-lounge-airside-centre",
     "airport_code": "ZRH",
     "airport_name": "Zurich Airport",
